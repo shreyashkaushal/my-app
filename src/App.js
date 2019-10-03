@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React,{Component} from 'react';
+import './UserOutput';
+import './UserInput';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import './App.css';
+import UserInput from './UserInput';
+import UserOutput from './UserOutput';
+class App extends Component {
+  state = {
+    username : [{name:'shreyash'},{name:'shreya'},{name:'ajay'}]
+  }
+
+  manipulater = (event) =>{
+   // console.log('this actually works');
+   this.setState({username:[{name: event.target.value},{name:'shreya jain'},{name:'ajay choudhary'}]})
+  }
+  render(){
+    return(
+     <div className="App">
+       <h1>hiii my first mini project</h1>
+       <UserInput change={this.manipulater}
+       displayName={this.state.username[0].name}></UserInput>
+      
+       <UserOutput name={this.state.username[0].name}
+       changed={this.manipulater}>
+
+       </UserOutput>
+       <UserOutput name ={this.state.username[1].name}></UserOutput>
+       <UserOutput name = {this.state.username[2].name}></UserOutput>
+       <button onClick={this.manipulater}>Change the name</button>
+
+     </div> 
+    );
+  }
+
 }
 
 export default App;
